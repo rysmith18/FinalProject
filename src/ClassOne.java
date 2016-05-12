@@ -17,7 +17,7 @@ public class ClassOne extends JFrame implements ActionListener{
 	static GridLayout layout;
 	static  JPanel mainPanel;
 	static JPanel buttonPanel;
-	int selection = 0;
+	static int selection = 0;
 	
 	public ClassOne() {
 		super("Sports Quiz");
@@ -25,7 +25,7 @@ public class ClassOne extends JFrame implements ActionListener{
 		mainPanel = new JPanel();
 		buttonPanel = new JPanel();
 		
-		buttonPanel.setLayout(new GridLayout(2, 4));
+		buttonPanel.setLayout(new GridLayout(4, 4));
 		
 		button = new JButton("A. Easy");
 		button.setActionCommand("easy");
@@ -61,7 +61,7 @@ public class ClassOne extends JFrame implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//JButton button = (JButton)e.getSource();//reference for JButton
+		JButton button = (JButton)e.getSource();//reference for JButton
 		
 		switch(button.getActionCommand()) {
 		case "easy":
@@ -78,6 +78,7 @@ public class ClassOne extends JFrame implements ActionListener{
 			break;
 		default:
 			JOptionPane.showMessageDialog(null, "Error, Program Crashed. So much 10.");
+			break;
 		}
 		
 	}
