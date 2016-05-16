@@ -30,7 +30,8 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 	static JPanel mainPanel = new JPanel();
 	static JPanel buttonPanel = new JPanel();
 	int ctr = 0;
-	File questions = new File("Questions.txt");
+	//File questions = new File("Questions.txt");
+	int selection = 0;
 
 	public EasyDifficulty() {
 		super("Sports Quiz (Easy)");
@@ -89,7 +90,6 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 		button1.setText("B. Mario Lemieux");
 		button2.setText("C. Gordie Howe");
 		button3.setText("D. Bobby Hull");
-		System.out.println("YO YO YO");
 	}
 
 	public void askQuestionThree() {
@@ -169,6 +169,8 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 			System.out.println(e1);
 		}
 	}
+	
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -176,61 +178,81 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 
 		askQuestionOne();
 		if (e.getActionCommand() == "a" || e.getActionCommand() == "b" || e.getActionCommand() == "d") {
-			playIncorrectSound();
-			JOptionPane.showMessageDialog(null, "Wrong! It was Roberto Clemente.");
-			JOptionPane.showConfirmDialog(null, "Continue?");
+			selection = 1;
+			answerQuestionOne();
+			//playIncorrectSound();
+			//JOptionPane.showMessageDialog(null, "Wrong! It was Roberto Clemente.");
 		} else if (e.getActionCommand() == "c") {
-			ctr++;
-			playCorrectSound();
-			JOptionPane.showMessageDialog(null, "Right!");
+			selection = 2;
+			//ctr++;
+			//playCorrectSound();
+			//JOptionPane.showMessageDialog(null, "Right!");
 		}
 		
 		
 		
 		askQuestionTwo();
 		if (e.getActionCommand() == "b" || e.getActionCommand() == "c" || e.getActionCommand() == "d") {
-			playIncorrectSound();
-			JOptionPane.showMessageDialog(null, "Wrong! It was Wayne Gretzky.");
+			selection = 1;
+			answerQuestionTwo();
+			//playIncorrectSound();
+			//JOptionPane.showMessageDialog(null, "Wrong! It was Wayne Gretzky.");
 		} else if (e.getActionCommand() == "a") {
-			ctr++;
-			playCorrectSound();
-			JOptionPane.showMessageDialog(null, "Right!");
+			selection = 2;
+			answerQuestionTwo();
+			//ctr++;
+			//playCorrectSound();
+			//JOptionPane.showMessageDialog(null, "Right!");
 		}
 		//JOptionPane.showConfirmDialog(null, "Continue?");
-
+		
 		askQuestionThree();
 		if (e.getActionCommand() == "a" || e.getActionCommand() == "c" || e.getActionCommand() == "d") {
-			playIncorrectSound();
-			JOptionPane.showMessageDialog(null, "Wrong! It was the Cleveland Browns.");
+			selection = 1;
+			answerQuestionThree();
+			//playIncorrectSound();
+			//JOptionPane.showMessageDialog(null, "Wrong! It was the Cleveland Browns.");
 		} else if (e.getActionCommand() == "b") {
-			ctr++;
-			playCorrectSound();
-			JOptionPane.showMessageDialog(null, "Right!");
+			selection = 2;
+			answerQuestionThree();
+			//ctr++;
+			//playCorrectSound();
+			//JOptionPane.showMessageDialog(null, "Right!");
 		}
 		//JOptionPane.showConfirmDialog(null, "Continue?");
-
+		
 		askQuestionFour();
 		if (e.getActionCommand() == "a" || e.getActionCommand() == "b" || e.getActionCommand() == "c") {
-			playIncorrectSound();
-			JOptionPane.showMessageDialog(null, "Wrong! It was both Basketball and Soccer.");
+			selection = 1;
+			answerQuestionFour();
+			//playIncorrectSound();
+			//JOptionPane.showMessageDialog(null, "Wrong! It was both Basketball and Soccer.");
 		} else if (e.getActionCommand() == "d") {
-			ctr++;
-			playCorrectSound();
-			JOptionPane.showMessageDialog(null, "Right!");
+			selection = 2;
+			answerQuestionFour();
+			//ctr++;
+			//playCorrectSound();
+			//JOptionPane.showMessageDialog(null, "Right!");
 		}
 		//JOptionPane.showConfirmDialog(null, "Continue?");
-
+		
 		askQuestionFive();
 		if (e.getActionCommand() == "a" || e.getActionCommand() == "b" || e.getActionCommand() == "c") {
-			playIncorrectSound();
-			JOptionPane.showMessageDialog(null, "Wrong! It was Michael Jordan.");
-			viewResults();
+			selection = 1;
+			answerQuestionFive();
+			//playIncorrectSound();
+			//JOptionPane.showMessageDialog(null, "Wrong! It was Michael Jordan.");
+			//viewResults();
 		} else if (e.getActionCommand() == "d") {
-			ctr++;
-			playCorrectSound();
-			JOptionPane.showMessageDialog(null, "Right!");
-			viewResults();
+			selection = 2;
+			answerQuestionFive();
+			//ctr++;
+			//playCorrectSound();
+			//JOptionPane.showMessageDialog(null, "Right!");
+			//viewResults();
 		}
+		
+		
 
 		/*
 		 * switch(button.getActionCommand()) { case "a": myLabel.setText(
@@ -309,6 +331,66 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 		 * }
 		 */
 
+	}
+	
+	public void answerQuestionOne() {
+		if(selection == 1) {
+			playIncorrectSound();
+			JOptionPane.showMessageDialog(null, "Wrong! It was Roberto Clemente.");
+		} else if(selection == 2) {
+			ctr++;
+			playCorrectSound();
+			JOptionPane.showMessageDialog(null, "Right!");
+		}
+	}
+	
+	public void answerQuestionTwo() {
+		if(selection == 1) {
+			playIncorrectSound();
+			JOptionPane.showMessageDialog(null, "Wrong! It was Wayne Gretzky.");
+		} else if(selection == 2) {
+			ctr++;
+			playCorrectSound();
+			JOptionPane.showMessageDialog(null, "Right!");
+		}
+	selection = 0;
+	}
+	
+	public void answerQuestionThree() {
+		if(selection == 1) {
+			playIncorrectSound();
+			JOptionPane.showMessageDialog(null, "Wrong! It was the Cleveland Browns.");
+		} else if(selection == 2) {
+			ctr++;
+			playCorrectSound();
+			JOptionPane.showMessageDialog(null, "Right!");
+		}
+	selection = 0;
+	}
+	
+	public void answerQuestionFour() {
+		if(selection == 1) {
+			playIncorrectSound();
+			JOptionPane.showMessageDialog(null, "Wrong! It was both Basketball and Soccer.");
+		} else if(selection == 2) {
+			ctr++;
+			playCorrectSound();
+			JOptionPane.showMessageDialog(null, "Right!");
+		}
+	selection = 0;
+	}
+	
+	public void answerQuestionFive() {
+		if(selection == 1) {
+			playIncorrectSound();
+			JOptionPane.showMessageDialog(null, "Wrong! It was Michael Jordan.");
+			viewResults();
+		} else if(selection == 2) {
+			ctr++;
+			playCorrectSound();
+			JOptionPane.showMessageDialog(null, "Right!");
+			viewResults();
+		}
 	}
 
 	/**
