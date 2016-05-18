@@ -21,7 +21,7 @@ import javax.swing.*;
  */
 public class EasyDifficulty extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	JLabel myLabel;
+	static JLabel myLabel;
 	static JButton button;
 	static JButton button1;
 	static JButton button2;
@@ -30,8 +30,11 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 	static JPanel mainPanel = new JPanel();
 	static JPanel buttonPanel = new JPanel();
 	int ctr = 0;
+	int otherCtr = 0;
+	static int playAgain;
 	//File questions = new File("Questions.txt");
 	int selection = 0;
+	int[] answerArray = new int[5];
 
 	public EasyDifficulty() {
 		super("Sports Quiz (Easy)");
@@ -65,6 +68,8 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 		button3.setActionCommand("d");
 		button3.addActionListener(this);
 		buttonPanel.add(button3);
+		
+		
 
 		add(buttonPanel, BorderLayout.SOUTH);
 
@@ -73,10 +78,14 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 		setSize(getPreferredSize());
 		pack();
 		setVisible(true);
+		
+
+		
+		
 
 	}
 
-	public void askQuestionOne() {
+	public static void askQuestionOne() {
 		myLabel.setText("Q1: What MLB team did famed Puerto Rican outfielder Roberto Clemente play for?");
 		button.setText("A. Pittsburgh Steelers");
 		button1.setText("B. Los Angeles Dodgers");
@@ -175,180 +184,28 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//JButton button = (JButton) e.getSource();// reference for JButton
-
-		askQuestionOne();
-		if (e.getActionCommand() == "a" || e.getActionCommand() == "b" || e.getActionCommand() == "d") {
-			selection = 1;
-			answerQuestionOne();
-			//playIncorrectSound();
-			//JOptionPane.showMessageDialog(null, "Wrong! It was Roberto Clemente.");
-		} else if (e.getActionCommand() == "c") {
-			selection = 2;
-			//ctr++;
-			//playCorrectSound();
-			//JOptionPane.showMessageDialog(null, "Right!");
-		}
 		
-		
-		
-		askQuestionTwo();
-		if (e.getActionCommand() == "b" || e.getActionCommand() == "c" || e.getActionCommand() == "d") {
-			selection = 1;
-			answerQuestionTwo();
-			//playIncorrectSound();
-			//JOptionPane.showMessageDialog(null, "Wrong! It was Wayne Gretzky.");
-		} else if (e.getActionCommand() == "a") {
-			selection = 2;
-			answerQuestionTwo();
-			//ctr++;
-			//playCorrectSound();
-			//JOptionPane.showMessageDialog(null, "Right!");
-		}
-		//JOptionPane.showConfirmDialog(null, "Continue?");
-		
-		askQuestionThree();
-		if (e.getActionCommand() == "a" || e.getActionCommand() == "c" || e.getActionCommand() == "d") {
-			selection = 1;
-			answerQuestionThree();
-			//playIncorrectSound();
-			//JOptionPane.showMessageDialog(null, "Wrong! It was the Cleveland Browns.");
-		} else if (e.getActionCommand() == "b") {
-			selection = 2;
-			answerQuestionThree();
-			//ctr++;
-			//playCorrectSound();
-			//JOptionPane.showMessageDialog(null, "Right!");
-		}
-		//JOptionPane.showConfirmDialog(null, "Continue?");
-		
-		askQuestionFour();
-		if (e.getActionCommand() == "a" || e.getActionCommand() == "b" || e.getActionCommand() == "c") {
-			selection = 1;
-			answerQuestionFour();
-			//playIncorrectSound();
-			//JOptionPane.showMessageDialog(null, "Wrong! It was both Basketball and Soccer.");
-		} else if (e.getActionCommand() == "d") {
-			selection = 2;
-			answerQuestionFour();
-			//ctr++;
-			//playCorrectSound();
-			//JOptionPane.showMessageDialog(null, "Right!");
-		}
-		//JOptionPane.showConfirmDialog(null, "Continue?");
-		
-		askQuestionFive();
-		if (e.getActionCommand() == "a" || e.getActionCommand() == "b" || e.getActionCommand() == "c") {
-			selection = 1;
-			answerQuestionFive();
-			//playIncorrectSound();
-			//JOptionPane.showMessageDialog(null, "Wrong! It was Michael Jordan.");
-			//viewResults();
-		} else if (e.getActionCommand() == "d") {
-			selection = 2;
-			answerQuestionFive();
-			//ctr++;
-			//playCorrectSound();
-			//JOptionPane.showMessageDialog(null, "Right!");
-			//viewResults();
-		}
-		
-		
-
-		/*
-		 * switch(button.getActionCommand()) { case "a": myLabel.setText(
-		 * "Sorry, incorrect. The correct answer was "); this.button.setText(
-		 * "Next question"); button1.setText(""); button2.setText("");
-		 * button3.setText("End quiz"); if(button.getActionCommand() == "a")
-		 * {//Q2 myLabel.setText("Q2: "); this.button.setText("A. ");
-		 * button1.setText("B. "); button2.setText("C. "); button3.setText("D. "
-		 * ); if(button.getActionCommand() == "a") {
-		 * myLabel.setText("Correct!"); ctr++; this.button.setText(
-		 * "Next Question"); button1.setText(""); button2.setText("");
-		 * button3.setText("End quiz"); if(button.getActionCommand() == "a")
-		 * {//Q3 myLabel.setText("Q3: "); this.button.setText("A. ");
-		 * button1.setText("B. "); button2.setText("C. "); button3.setText("D. "
-		 * ); if(button.getActionCommand() == "b") {
-		 * myLabel.setText("Correct!"); ctr++; this.button.setText(
-		 * "Next question"); button1.setText(""); button2.setText("");
-		 * button3.setText("End quiz"); if(button.getActionCommand() == "a")
-		 * {//Q4 myLabel.setText("Q4: "); this.button.setText("A. ");
-		 * button1.setText("B. "); button2.setText("C. "); button3.setText("D. "
-		 * ); if(button.getActionCommand() == "d") {
-		 * myLabel.setText("Correct!"); ctr++; this.button.setText(
-		 * "Next question"); button1.setText(""); button2.setText("");
-		 * button3.setText(""); if(button.getActionCommand() == "a") {//Q5
-		 * myLabel.setText("Q5: "); this.button.setText("A. "); button1.setText(
-		 * "B. "); button2.setText("C. "); button3.setText("D. ");
-		 * if(button.getActionCommand() == "d") { ctr++; myLabel.setText(
-		 * "Correct! You got " + ctr + " questions right!"); } else
-		 * if(button.getActionCommand() == "a" || button.getActionCommand() ==
-		 * "b" || button.getActionCommand() == "c") { myLabel.setText(
-		 * "Sorry, incorrect.  The correct answer was You got " + ctr +
-		 * " questions right!"); } } else if(button.getActionCommand() == "d") {
-		 * myLabel.setText("You got " + ctr + " questions right!");
-		 * 
-		 * } } else if(button.getActionCommand() == "a" ||
-		 * button.getActionCommand() == "b" || button.getActionCommand() == "c")
-		 * { myLabel.setText("Sorry, incorrect. The correct answer was ");
-		 * this.button.setText("Next Question"); button1.setText("");
-		 * button2.setText(""); button3.setText("End quiz");
-		 * if(button.getActionCommand() == "a") { myLabel.setText("Q5: ");
-		 * this.button.setText("A. "); button1.setText("B. "); button2.setText(
-		 * "C. "); button3.setText("D. "); if(button.getActionCommand() == "d")
-		 * { ctr++; myLabel.setText("Correct! You got " + ctr +
-		 * " questions right!"); } else if(button.getActionCommand() == "a" ||
-		 * button.getActionCommand() == "b" || button.getActionCommand() == "c")
-		 * { myLabel.setText(
-		 * "Sorry, incorrect.  The correct answer was You got " + ctr +
-		 * " questions right!"); } } else if(button.getActionCommand() == "d") {
-		 * myLabel.setText("You got " + ctr + " questions right!");
-		 * 
-		 * } }
-		 * 
-		 * } else if(button.getActionCommand() == "d") { myLabel.setText(
-		 * "You got " + ctr + " questions right!"); } } else
-		 * if(button.getActionCommand() == "a" || button.getActionCommand() ==
-		 * "c" || button.getActionCommand() == "d") { //Q3 myLabel.setText(
-		 * "Sorry, incorrect. The correct answer was "); this.button.setText(
-		 * "Next Question"); button1.setText(""); button2.setText("");
-		 * button3.setText("End quiz");
-		 * 
-		 * } } else if(button.getActionCommand() == "d") { myLabel.setText(
-		 * "You got " + ctr + " questions right!"); } } else
-		 * if(button.getActionCommand() == "b" || button.getActionCommand() ==
-		 * "c" || button.getActionCommand() == "d") { //Q2 myLabel.setText(
-		 * "Sorry, incorrect. The correct answer was "); this.button.setText(
-		 * "Next Question"); button1.setText(""); button2.setText("");
-		 * button3.setText("End quiz");
-		 * 
-		 * }
-		 * 
-		 * } else if(button.getActionCommand() == "d") { myLabel.setText(
-		 * "You got " + ctr + " questions right!"); } break; case "b":
-		 * myLabel.setText("Sorry, incorrect. The correct answer was "); break;
-		 * case "c": myLabel.setText("Correct!"); ctr++; break; case "d":
-		 * myLabel.setText("Sorry, incorrect. The correct answer was "); break;
-		 * }
-		 */
-
+		e.getActionCommand();
 	}
 	
-	public void answerQuestionOne() {
-		if(selection == 1) {
+	
+	public void answerQuestionOne(ActionEvent e) {
+		if(e.getActionCommand() == "a" || e.getActionCommand() == "b" || e.getActionCommand() == "d") {
 			playIncorrectSound();
 			JOptionPane.showMessageDialog(null, "Wrong! It was Roberto Clemente.");
-		} else if(selection == 2) {
+		} else if(e.getActionCommand() == "c") {
 			ctr++;
 			playCorrectSound();
 			JOptionPane.showMessageDialog(null, "Right!");
 		}
+	selection = 0;
 	}
 	
-	public void answerQuestionTwo() {
-		if(selection == 1) {
+	public void answerQuestionTwo(ActionEvent e1) {
+		if(e1.getActionCommand() == "b" || e1.getActionCommand() == "c" || e1.getActionCommand() == "d") {
 			playIncorrectSound();
 			JOptionPane.showMessageDialog(null, "Wrong! It was Wayne Gretzky.");
-		} else if(selection == 2) {
+		} else if(e1.getActionCommand() == "a") {
 			ctr++;
 			playCorrectSound();
 			JOptionPane.showMessageDialog(null, "Right!");
@@ -356,11 +213,11 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 	selection = 0;
 	}
 	
-	public void answerQuestionThree() {
-		if(selection == 1) {
+	public void answerQuestionThree(ActionEvent e2) {
+		if(e2.getActionCommand() == "a" || e2.getActionCommand() == "c" || e2.getActionCommand() == "d") {
 			playIncorrectSound();
 			JOptionPane.showMessageDialog(null, "Wrong! It was the Cleveland Browns.");
-		} else if(selection == 2) {
+		} else if(e2.getActionCommand() == "b") {
 			ctr++;
 			playCorrectSound();
 			JOptionPane.showMessageDialog(null, "Right!");
@@ -368,11 +225,11 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 	selection = 0;
 	}
 	
-	public void answerQuestionFour() {
-		if(selection == 1) {
+	public void answerQuestionFour(ActionEvent e3) {
+		if(e3.getActionCommand() == "a" || e3.getActionCommand() == "b" || e3.getActionCommand() == "c") {
 			playIncorrectSound();
 			JOptionPane.showMessageDialog(null, "Wrong! It was both Basketball and Soccer.");
-		} else if(selection == 2) {
+		} else if(e3.getActionCommand() == "d") {
 			ctr++;
 			playCorrectSound();
 			JOptionPane.showMessageDialog(null, "Right!");
@@ -380,12 +237,12 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 	selection = 0;
 	}
 	
-	public void answerQuestionFive() {
-		if(selection == 1) {
+	public void answerQuestionFive(ActionEvent e4) {
+		if(e4.getActionCommand() == "a" || e4.getActionCommand() == "b" || e4.getActionCommand() == "c") {
 			playIncorrectSound();
 			JOptionPane.showMessageDialog(null, "Wrong! It was Michael Jordan.");
 			viewResults();
-		} else if(selection == 2) {
+		} else if(e4.getActionCommand() == "d") {
 			ctr++;
 			playCorrectSound();
 			JOptionPane.showMessageDialog(null, "Right!");
@@ -398,6 +255,10 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 	 */
 	public static void main(String[] args) {
 		new EasyDifficulty();
+		do {
+			askQuestionOne();
+		} while(playAgain == 0);
 	}
 
 }
+
