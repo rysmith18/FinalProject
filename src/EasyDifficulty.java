@@ -29,12 +29,14 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 	static GridLayout layout;
 	static JPanel mainPanel = new JPanel();
 	static JPanel buttonPanel = new JPanel();
-	int ctr = 0;
+	static int c = 0;
+	static int ctr = 0;
 	int otherCtr = 0;
 	static int playAgain;
 	int selection = 0;
-	int[] answerArray = new int[5];
-
+	static String answer;
+	static String[] answerArray = new String[5];
+	static String[] actualAnswers = {"c", "a", "b", "d", "d"};
 	public EasyDifficulty() {
 		super("Sports Quiz (Easy)");
 	
@@ -125,11 +127,12 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 		button3.setText("D. Michael Jordan");
 	}
 
-	public void viewResults() {
+	public static void viewResults() {
+		myLabel.setText("Answer key: 1: Roberto Clemente, 2: Wayne Gretzky, 3: Cleveland Browns, 4: Both Basketball and Soccer, 5: Michael Jordan");
 		JOptionPane.showMessageDialog(null, "You got " + ctr + " questions right!");
 	}
 
-	public void playIncorrectSound() {
+	public static void playIncorrectSound() {
 		try {
 			File soundFive = new File("Windows_Hardware_Remove.wav");// creating
 																		// sound
@@ -156,7 +159,7 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 		}
 	}
 
-	public void playCorrectSound() {
+	public static void playCorrectSound() {
 		try {
 			File dingSound = new File("ding.wav");// creating sound file
 													// reference
@@ -184,14 +187,15 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		//JButton button = (JButton) e.getSource();// reference for JButton
 		
-		e.getActionCommand();
+		answer = e.getActionCommand();
+		
 	}
 	
 	
-	public void answerQuestionOne(ActionEvent e) {
+	/*public void answerQuestionOne(ActionEvent e) {
 		if(e.getActionCommand() == "a" || e.getActionCommand() == "b" || e.getActionCommand() == "d") {
 			playIncorrectSound();
-			JOptionPane.showMessageDialog(null, "Wrong! It was Roberto Clemente.");
+			JOptionPane.showMessageDialog(null, "Wrong!");
 		} else if(e.getActionCommand() == "c") {
 			ctr++;
 			playCorrectSound();
@@ -203,7 +207,7 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 	public void answerQuestionTwo(ActionEvent e1) {
 		if(e1.getActionCommand() == "b" || e1.getActionCommand() == "c" || e1.getActionCommand() == "d") {
 			playIncorrectSound();
-			JOptionPane.showMessageDialog(null, "Wrong! It was Wayne Gretzky.");
+			JOptionPane.showMessageDialog(null, "Wrong!");
 		} else if(e1.getActionCommand() == "a") {
 			ctr++;
 			playCorrectSound();
@@ -215,7 +219,7 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 	public void answerQuestionThree(ActionEvent e2) {
 		if(e2.getActionCommand() == "a" || e2.getActionCommand() == "c" || e2.getActionCommand() == "d") {
 			playIncorrectSound();
-			JOptionPane.showMessageDialog(null, "Wrong! It was the Cleveland Browns.");
+			JOptionPane.showMessageDialog(null, "Wrong!");
 		} else if(e2.getActionCommand() == "b") {
 			ctr++;
 			playCorrectSound();
@@ -227,7 +231,7 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 	public void answerQuestionFour(ActionEvent e3) {
 		if(e3.getActionCommand() == "a" || e3.getActionCommand() == "b" || e3.getActionCommand() == "c") {
 			playIncorrectSound();
-			JOptionPane.showMessageDialog(null, "Wrong! It was both Basketball and Soccer.");
+			JOptionPane.showMessageDialog(null, "Wrong!");
 		} else if(e3.getActionCommand() == "d") {
 			ctr++;
 			playCorrectSound();
@@ -239,7 +243,7 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 	public void answerQuestionFive(ActionEvent e4) {
 		if(e4.getActionCommand() == "a" || e4.getActionCommand() == "b" || e4.getActionCommand() == "c") {
 			playIncorrectSound();
-			JOptionPane.showMessageDialog(null, "Wrong! It was Michael Jordan.");
+			JOptionPane.showMessageDialog(null, "Wrong!");
 			viewResults();
 		} else if(e4.getActionCommand() == "d") {
 			ctr++;
@@ -247,7 +251,7 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null, "Right!");
 			viewResults();
 		}
-	}
+	}*/
 
 	/**
 	 * @param args
@@ -255,7 +259,94 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 	public static void main(String[] args) {
 		new EasyDifficulty();
 		do {
-			askQuestionOne();
+			while(c < 5) {
+				askQuestionOne();
+				answerArray[0] = answer;
+				if(answerArray[0] == actualAnswers[0]) {
+					playCorrectSound();
+					ctr++;
+					JOptionPane.showMessageDialog(null, "Right!");
+					c++;
+				} else {
+					playIncorrectSound();
+					JOptionPane.showMessageDialog(null, "Wrong!");
+					c++;
+				}
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				askQuestionTwo();
+				answerArray[1] = answer;
+				if(answerArray[1] == actualAnswers[1]) {
+					playCorrectSound();
+					ctr++;
+					JOptionPane.showMessageDialog(null, "Right!");
+					c++;
+				} else {
+					playIncorrectSound();
+					JOptionPane.showMessageDialog(null, "Wrong!");
+					c++;
+				}
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				askQuestionThree();
+				answerArray[2] = answer;
+				if(answerArray[2] == actualAnswers[2]) {
+					playCorrectSound();
+					ctr++;
+					JOptionPane.showMessageDialog(null, "Right!");
+					c++;
+				} else {
+					playIncorrectSound();
+					JOptionPane.showMessageDialog(null, "Wrong!");
+					c++;
+				}
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				askQuestionFour();
+				answerArray[3] = answer;
+				if(answerArray[3] == actualAnswers[3]) {
+					playCorrectSound();
+					ctr++;
+					JOptionPane.showMessageDialog(null, "Right!");
+					c++;
+				} else {
+					playIncorrectSound();
+					JOptionPane.showMessageDialog(null, "Wrong!");
+					c++;
+				}
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				askQuestionFive();
+				answerArray[4] = answer;
+				if(answerArray[4] == actualAnswers[4]) {
+					playCorrectSound();
+					ctr++;
+					JOptionPane.showMessageDialog(null, "Right!");
+					c++;
+					viewResults();
+				} else {
+					playIncorrectSound();
+					JOptionPane.showMessageDialog(null, "Wrong!");
+					c++;
+					viewResults();
+				}
+			}
 			playAgain = JOptionPane.showConfirmDialog(null,"Want to play again?" , "Play Again?", JOptionPane.YES_NO_OPTION);
 		} while(playAgain == JOptionPane.YES_OPTION);
 		if(playAgain == JOptionPane.NO_OPTION) {
