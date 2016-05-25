@@ -16,7 +16,7 @@ import javax.swing.*;
  */
 
 /**
- * @author SJHSStudent
+ * @author Ryan Smith
  *
  */
 public class EasyDifficulty extends JFrame implements ActionListener {
@@ -32,15 +32,15 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 	int ctr = 0;
 	int otherCtr = 0;
 	static int playAgain;
-	//File questions = new File("Questions.txt");
 	int selection = 0;
 	int[] answerArray = new int[5];
 
 	public EasyDifficulty() {
 		super("Sports Quiz (Easy)");
-
+	
+		
 		mainPanel.setLayout(new GridLayout(4, 4));
-
+		
 		myLabel = new JLabel();
 		mainPanel.add(myLabel);
 		myLabel.setText("Q1: What MLB team did famed Puerto Rican outfielder Roberto Clemente play for?");
@@ -93,7 +93,7 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 		button3.setText("D. Montreal Royals");
 	}
 
-	public void askQuestionTwo() {
+	public static void askQuestionTwo() {
 		myLabel.setText("Q2: Which hockey star was nicknamed \"The Great One\"?");
 		button.setText("A. Wayne Gretzky");
 		button1.setText("B. Mario Lemieux");
@@ -101,7 +101,7 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 		button3.setText("D. Bobby Hull");
 	}
 
-	public void askQuestionThree() {
+	public static void askQuestionThree() {
 		myLabel.setText("Q3: Which NFL team has never won a Super Bowl?");
 		button.setText("A. Denver Broncos");
 		button1.setText("B. Cleveland Browns");
@@ -109,7 +109,7 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 		button3.setText("D. Seattle Seahawks");
 	}
 
-	public void askQuestionFour() {
+	public static void askQuestionFour() {
 		myLabel.setText("Q4: In what sport are passing, dribbling, and shooting fundamental skills?");
 		button.setText("A. Soccer");
 		button1.setText("B. Basketball");
@@ -117,7 +117,7 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 		button3.setText("D. Both A and B");
 	}
 
-	public void askQuestionFive() {
+	public static void askQuestionFive() {
 		myLabel.setText("Q5: Which NBA superstar won 6 championships with the Chigago Bulls?");
 		button.setText("A. Dennis Rodman");
 		button1.setText("B. Larry Bird");
@@ -178,7 +178,6 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 			System.out.println(e1);
 		}
 	}
-	
 	
 
 	@Override
@@ -257,7 +256,11 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 		new EasyDifficulty();
 		do {
 			askQuestionOne();
-		} while(playAgain == 0);
+			playAgain = JOptionPane.showConfirmDialog(null,"Want to play again?" , "Play Again?", JOptionPane.YES_NO_OPTION);
+		} while(playAgain == JOptionPane.YES_OPTION);
+		if(playAgain == JOptionPane.NO_OPTION) {
+			System.exit(0);
+		}
 	}
 
 }
