@@ -17,7 +17,7 @@ import javax.swing.*;
 
 /**
  * @author Ryan Smith
- *
+ * This program is a fun sports quiz with questions of increasing difficulty.
  */
 public class EasyDifficulty extends JFrame implements ActionListener {//Note: this class was named when I was going to put the three difficulties in separate classes, but I changed my plans.
 	//declarations and instantiations
