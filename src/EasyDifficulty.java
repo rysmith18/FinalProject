@@ -19,7 +19,8 @@ import javax.swing.*;
  * @author Ryan Smith
  *
  */
-public class EasyDifficulty extends JFrame implements ActionListener {
+public class EasyDifficulty extends JFrame implements ActionListener {//Note: this class was named when I was going to put the three difficulties in separate classes, but I changed my plans.
+	//declarations and instantiations
 	private static final long serialVersionUID = 1L;
 	static JLabel myLabel;
 	static JButton button;
@@ -36,22 +37,22 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 	static int hard;
 	int selection = 0;
 	static String answer;
-	static String[] answerArray = new String[5];
-	static String[] actualAnswers = { "c", "a", "b", "d", "d" };
-	static String[] mediumAnswerArray = new String[5];
-	static String[] mediumActualAnswers = {"b", "d", "a", "b", "d"};
-	static String[] hardAnswerArray = new String[5];
-	static String[] hardActualAnswers = {"c", "d", "c", "a", "d"};
+	static String[] answerArray = new String[5];// array of user's answers
+	static String[] actualAnswers = { "c", "a", "b", "d", "d" };// array of actual answers
+	static String[] mediumAnswerArray = new String[5];// array of user's answers for medium difficulty
+	static String[] mediumActualAnswers = {"b", "d", "a", "b", "d"};// array of actual answers for medium difficulty
+	static String[] hardAnswerArray = new String[5];// array of user's answers for hard difficulty
+	static String[] hardActualAnswers = {"c", "d", "c", "a", "d"};//array of actual answers for hard difficulty
 
 	public EasyDifficulty() {
-		super("Sports Quiz");
+		super("Sports Quiz");// must be called because this class extends another class
 
-		mainPanel.setLayout(new GridLayout(4, 4));
+		mainPanel.setLayout(new GridLayout(4, 4));// setting the grid layout to 4x4
 
-		myLabel = new JLabel();
-		mainPanel.add(myLabel);
+		myLabel = new JLabel();// creates JLabel
+		mainPanel.add(myLabel);//adding myLabel to the window
 		myLabel.setText("Q1: What MLB team did famed Puerto Rican outfielder Roberto Clemente play for?");
-
+		//setting font, setting actionCommand, adding ActionListener, for all buttons and adding them to the window.
 		button = new JButton("A. Pittsburgh Steelers");
 		button.setFont(new Font("TimesRoman", Font.BOLD, 24));
 		button.setActionCommand("a");
@@ -76,16 +77,17 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 		button3.addActionListener(this);
 		buttonPanel.add(button3);
 
-		add(buttonPanel, BorderLayout.SOUTH);
+		add(buttonPanel, BorderLayout.SOUTH);//adding the buttonPanel
 
-		add(mainPanel, BorderLayout.CENTER);
+		add(mainPanel, BorderLayout.CENTER);//adding the mainPanel
 
-		setSize(getPreferredSize());
+		setSize(getPreferredSize());//setting the size to the preferred size
 		pack();
-		setVisible(true);
+		setVisible(true);//makes the frame visible
+		setResizable(false);//makes the frame unresizable
 
-	}
-
+	}//end of constructor
+	//These methods ask the questions (as you can probably tell by their names)
 	public static void askQuestionOne() {
 		myLabel.setText(
 				"Q1: What MLB team did famed Puerto Rican outfielder Roberto Clemente play for?  You have 15 seconds for each question.");
@@ -286,15 +288,16 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new EasyDifficulty();
+		new EasyDifficulty();//This makes the window visible
 		while (c < 5) {
-			askQuestionOne();
+			askQuestionOne();//asking question one
 			try {
 				Thread.sleep(15000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			//lines 299-309 add the action command of the button the user pressed to the array, and check to see if it matches the correct answer
 			answerArray[0] = answer;
 			if (answerArray[0] == actualAnswers[0]) {
 				playCorrectSound();
@@ -307,13 +310,14 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 				c++;
 			}
 
-			askQuestionTwo();
+			askQuestionTwo();//asking question two
 			try {
 				Thread.sleep(15000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			//lines 319-329 do the same thing that lines 299-309 do except for question two
 			answerArray[1] = answer;
 			if (answerArray[1] == actualAnswers[1]) {
 				playCorrectSound();
@@ -326,13 +330,14 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 				c++;
 			}
 
-			askQuestionThree();
+			askQuestionThree();//asking question three
 			try {
 				Thread.sleep(15000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			//lines 339-349 do the same thing that lines 299-309 do except for question three
 			answerArray[2] = answer;
 			if (answerArray[2] == actualAnswers[2]) {
 				playCorrectSound();
@@ -345,13 +350,14 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 				c++;
 			}
 
-			askQuestionFour();
+			askQuestionFour();//asking question four
 			try {
 				Thread.sleep(15000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			//lines 359-369 do the same thing that lines 299-309 do except for question four
 			answerArray[3] = answer;
 			if (answerArray[3] == actualAnswers[3]) {
 				playCorrectSound();
@@ -364,13 +370,14 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 				c++;
 			}
 
-			askQuestionFive();
+			askQuestionFive();//asking question five
 			try {
 				Thread.sleep(15000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			//lines 329-391 do the same thing that lines 299-309 do except for question five. They also tell the user how many questions they got right.
 			answerArray[4] = answer;
 			if (answerArray[4] == actualAnswers[4]) {
 				playCorrectSound();
@@ -384,6 +391,8 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 				c++;
 				viewResults();
 			}
+			//if the user got all the questions right, they will be asked if they would like to try harder questions. If they respond "yes", then harder questions will be asked.
+			//lines 394-489 do the same thing that the lines used for the first five questions did except now it is asking medium questions.
 			if(ctr == 5) {
 				medium = JOptionPane.showConfirmDialog(null, "You got them all right! Want to try harder questions?", "Want a challenge?", JOptionPane.YES_NO_OPTION);
 				if(medium == JOptionPane.YES_OPTION) {
@@ -480,6 +489,8 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 						c++;
 						viewMediumResults();
 					}
+					//if the user got all the medium questions right, then they will be asked if they would like to try HARD questions. If they do, these questions will be asked
+					//lines 492-590 do the same thing that the lines used for the first five questions did except now it is asking HARD questions.
 					if(ctr == 5) {
 						hard = JOptionPane.showConfirmDialog(null, "You got them all right! Want to try the TERRIBLY HARD QUESTIONS?", "WARNING: HARD QUESTIONS AHEAD", JOptionPane.YES_NO_OPTION);
 						if(hard == JOptionPane.YES_OPTION) {
@@ -579,12 +590,20 @@ public class EasyDifficulty extends JFrame implements ActionListener {
 							if(ctr == 5) {
 								JOptionPane.showMessageDialog(null, "Way to stay humble. You're a sports genius!");
 							}
+						} else if(hard == JOptionPane.NO_OPTION) {
+							System.exit(0);
 						}
+					} else {
+						System.exit(0);
 					}
+				} else if(medium == JOptionPane.NO_OPTION) {
+					System.exit(0);
 				}
+			} else {
+				System.exit(0);
 			}
 		} 
 
-	}
+	}//public static void main end
 
-}
+}//public class EasyDifficulty end
